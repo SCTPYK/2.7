@@ -68,17 +68,6 @@ resource "aws_instance" "yk-ec2" {
   tags = {
     Name = "yk-ec2"
   }
-
-  user_data = <<-EOF
-              #!/bin/bash
-              sleep 30
-              mkfs -t ext4 /dev/xvdb
-              mkdir -p /mnt/data
-              mount /dev/xvdb /mnt/data
-
-              UUID=$(sudo blkid -o value -s UUID /dev/xvdb)
-              echo "$UUID /mnt/data ext4 defaults 0 0" >> /etc/fstab
-  EOF
   
 }
 
